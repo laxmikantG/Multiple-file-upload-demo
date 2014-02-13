@@ -5,6 +5,9 @@ Created on 08-Feb-2014
 '''
 import os
 import settings
+
+from mypublisher.core import file_manager as FILES_MANAGER
+
 class ContentManager():
     '''
     classdocs
@@ -21,6 +24,8 @@ class ContentManager():
                 with open(content_storage_path, 'wb+') as destination:
                     for chunk in f.chunks():
                         destination.write(chunk)
+                files = FILES_MANAGER()
+                {"file_path":content_storage_path, "file_name":f.name, }
             except Exception, e :
                 raise e
                 

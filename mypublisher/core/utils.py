@@ -7,6 +7,9 @@ import time
 import random
 import socket
 import hashlib
+from mimetypes import MimeTypes
+import urllib 
+
 
 class Utility:
     
@@ -31,6 +34,14 @@ class Utility:
         data = hashlib.md5(data).hexdigest()
     
         return data
+    
+    def guess_mime_type(self, file_name):
+        '''
+        '''
+        mime = MimeTypes()
+        url = urllib.pathname2url(file_name)
+        mime_type = mime.guess_type(url)
+        return  mime_type
 
 if __name__ == '__main__':
     pass
