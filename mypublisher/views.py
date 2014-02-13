@@ -43,7 +43,8 @@ def render_upload_content(request):
 
 def save_content(request):
     cmanager  = ContentManager() 
-    cmanager.handle_uploaded_file(request.FILES["file_names"])
+    files = request.FILES.getlist("file_names")
+    cmanager.handle_uploaded_file(files)
     return render_to_response('cmanager_upload.html',{}, context_instance=RequestContext(request))
 
 
