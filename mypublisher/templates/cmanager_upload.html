@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="inner-container">
+	<form name="uplad_content" id="uplad_content" action="{% url "mypublisher.views.save_content" %}" 
+	method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+		<div class="upload-file-dialog">
+			<span class="label">Browse and select files to upload</span> 
+				<input type="file" size="40px" height="30px;" multiple="multiple" name="file_names"/>
+		</div>
+		<div class="drop-file-dialog">
+			<span class="label"><h1>Drop Files Here</h1></span> 
+		</div>
+		<button type="submit"> Upload Files</button>
+	</form>
+</div>
+{% endblock %}

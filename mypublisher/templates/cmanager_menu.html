@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+	</head>
+	<body>
+        <div id="container" class="clearfix">
+            <div id="body" class="clearfix">
+		<div class="body-vimeox content-block-vimeox" id="body-vimeox">
+			<div class="cmds-menu-block">
+				<ul class="cmds-menuitems-block">
+					<li class="item-block"><a href="{% url "mypublisher.views.render_upload_content" %}">Upload Content</a></li>
+					<li class="item-block"><a href="{% url "mypublisher.views.content_manager" %}">Content</a></li>
+					<li class="item-block"><a href="{% url "mypublisher.views.content_manager" %}">Preview Content</a></li>
+				</div>
+			</div>
+		</div>
+	</div>
+        </div>
+    </body>
+</html>
+{% endblock %}

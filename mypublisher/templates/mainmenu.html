@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="cmds-menu-block">
+		<ul class="cmds-menuitems-block">
+			<li class="item-block"><a href="{% url "mypublisher.views.content_manager" %}">Content Manager</a></li>
+			<li class="item-block">Business Analytics</li>
+			<li class="item-block">Partner Manager</li>
+			<li class="item-block" onclick="javascript:alert('Feature under development.');">OAM</li>
+			<li class="item-block" onclick="javascript:alert('Feature under development.');">Billing Engine</li>
+			<li class="item-block" onclick="javascript:alert('Feature under development.');">Mobile Apps</li>
+			<li class="item-block" onclick="http://www.vvidia.tv/mobile/rulesadmin/oprules/index.php?un=admin@somedomain.com&amp;pw=75ea7d5d5b9085b007f717c5c9118994">Policy Engine</li>
+			<li class="item-block" onclick="javascript:alert('Feature under development.');">Storefront Manager</li>
+			<li class="item-block" onclick="javascript:alert('Feature under development.');">Security and DRM</li>
+			<li class="item-block" onclick="javascript:alert('Feature under development.');">SNS</li>
+			<li class="item-block" onclick="javascript:alert('Feature under development.');">Customer Manager</li>
+		</ul>
+	</div>
+{% endblock %}
