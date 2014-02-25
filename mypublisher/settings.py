@@ -137,6 +137,7 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 LOGIN_REDIRECT_URL='/menu/'
 CONTENT_STORAGE_PATH = '/tmp/temp'
+ERROR_CODES_INI = "/home/laxmikant/workspace/mypublisher/mypublisher/media/ini/error_codes.ini"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
