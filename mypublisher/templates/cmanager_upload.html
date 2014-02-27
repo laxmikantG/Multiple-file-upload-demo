@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="inner-container">
+{% if message %}
+	<div class="message" >{{message}}</div>
+{% endif %}
 	<form name="uplad_content" id="uplad_content" action="{% url "mypublisher.views.save_content" %}" 
 	method="post" enctype="multipart/form-data">
 	{% csrf_token %}

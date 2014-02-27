@@ -13,5 +13,4 @@ urlpatterns = patterns('',
     (r'^cmanager/upload$', 'mypublisher.views.render_upload_content'),
     (r'^cmanager/upload/save$', 'mypublisher.views.save_content'),
     
-    
 )

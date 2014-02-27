@@ -20,3 +20,6 @@ class FileManager:
     def create_Files_record(self, file_meta):
         m = models.Files(**file_meta)
         m.save()
+    
+    def updateFileAttributes(self, file_meta):
+        pass
