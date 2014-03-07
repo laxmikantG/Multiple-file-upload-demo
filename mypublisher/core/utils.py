@@ -86,7 +86,7 @@ class Utility:
         (name, extension) = os.path.splitext(filename)
         return extension
     
-    def load_config(self, filepath):
+    def load_config_as_plain_dict(self, filepath):
         """
         returns a dictionary with keys of the ini
         """
@@ -96,12 +96,21 @@ class Utility:
         all_vals = {}
         {all_vals.update(dct) for title, dct in d.iteritems()}
         return all_vals
+    
+    def load_config_as_dict(self, filepath):
+        """
+        returns a dictionary with keys of the ini
+        """
+        f = ConfigParser()
+        f.read(filepath)
+        return f.as_dict()
+    
 
     def get_err_msg(self, error_code):
         """
         """
         fp = settings.ERROR_CODES_INI
-        ret_dict = self.load_config(fp)
+        ret_dict = self.load_config_as_plain_dict(fp)
 #         print ret_dict,  str(error_code)
         return ret_dict.get(str(error_code), 500)
     
@@ -152,7 +161,8 @@ class Utility:
           "audio" : audio_mimes,
           "video": video_mimes,
           "zip": zip_mimes,
-          "xml": xml_mimes
+          "xml": xml_mimes,
+          "image" :image_mimes
          }           
 
     def match_text(self, text1, text2, text):

@@ -39,6 +39,9 @@ class FileAttributes(models.Model):
                               "0|Is not an archive file. 1|Is an archive ")
     is_hidden = models.SmallIntegerField(blank=True, null=True, help_text=
                                       "0|Is not hidden file. 1|Is hidden ")
+    is_image = models.SmallIntegerField(blank=True, null=True, help_text=
+                                      "0|Is not hidden file. 1|Is hidden ")
+
     is_system_file = models.SmallIntegerField(blank=True, null=True, 
                    help_text="0|Is not a system file. 1|Is a system file ")
     is_xhtml = models.SmallIntegerField(blank=True, null=True, help_text=

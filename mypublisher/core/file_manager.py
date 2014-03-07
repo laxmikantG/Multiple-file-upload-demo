@@ -22,4 +22,5 @@ class FileManager:
         m.save()
     
     def updateFileAttributes(self, file_meta):
-        pass
+        m = models.FileAttributes(**file_meta)
+        m.save()
