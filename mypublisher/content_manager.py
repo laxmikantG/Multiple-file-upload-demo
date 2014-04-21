@@ -24,7 +24,7 @@ class ContentManager():
         for f in files:
             if not os.path.exists(settings.CONTENT_STORAGE_PATH):
                 try:
-                    os.makedirs(settings.CONTENT_STORAGE_PATH, 0644)
+                    os.makedirs(settings.CONTENT_STORAGE_PATH)
                 except OSError, e:
                     writelog("Folder can not be created \n"+str(e))
             content_storage_path = os.path.join(settings.\
@@ -71,6 +71,7 @@ class ContentManager():
             "is_unrecognised": rets[8]
         }
         files_manager.updateFileAttributes(file_meta)
+        
         return True
 
     def get_file_attributes(self, extension, mimetype):
