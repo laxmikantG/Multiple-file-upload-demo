@@ -24,3 +24,7 @@ class FileManager:
     def updateFileAttributes(self, file_meta):
         m = models.FileAttributes(**file_meta)
         m.save()
+        
+    def updateFilePermissions(self, file_meta):
+        m = models.FilePermissions(**file_meta)
+        m.save()

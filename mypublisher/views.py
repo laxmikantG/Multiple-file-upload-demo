@@ -49,7 +49,7 @@ def save_content(request):
     req_dict = utils.get_request_dict(request, "POST") 
     status, error_Code = cmanager.handle_uploaded_file(files, req_dict)
     message = utils.get_err_msg(error_Code)
-    return render_to_response('cmanager_upload.html',{"message": message}, context_instance=RequestContext(request))
+    return render_to_response('cmanager_upload.html',{"message": message, "status":status}, context_instance=RequestContext(request))
 
 
 def writelog(data):
