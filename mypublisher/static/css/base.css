@@ -1,0 +1,10 @@
+.centeral-box{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    margin-top: -50px;
+    margin-left: 50px;
+    width: 400px;
+    height: 200px;
+    border:2px solid red;
+}​

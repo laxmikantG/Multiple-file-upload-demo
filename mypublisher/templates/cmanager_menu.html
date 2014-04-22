@@ -1,20 +1,17 @@
 {% extends "base.html" %}
+{% block breadcrumb %}
+<ol class="breadcrumb">
+<li><a href="/menu"><i class="icon-dashboard"></i> Menu</a></li>
+<li class="active"><i class="icon-file-alt"></i> Content Manager</li>
+</ol>
+{% endblock %}
 {% block content %}
-	</head>
-	<body>
-        <div id="container" class="clearfix">
-            <div id="body" class="clearfix">
-		<div class="body-vimeox content-block-vimeox" id="body-vimeox">
-			<div class="cmds-menu-block">
-				<ul class="cmds-menuitems-block">
-					<li class="item-block"><a href="{% url "mypublisher.views.render_upload_content" %}">Upload Content</a></li>
-					<li class="item-block"><a href="{% url "mypublisher.views.content_manager" %}">Content</a></li>
-					<li class="item-block"><a href="{% url "mypublisher.views.content_manager" %}">Preview Content</a></li>
-				</div>
-			</div>
+<div class="body-vimeox content-block-vimeox" id="body-vimeox">
+	<div class="cmds-menu-block">
+		<ul class="cmds-menuitems-block">
+			<li class="item-block"><a href="{% url "mypublisher.views.render_upload_content" %}">Upload Content</a></li>
+			<li class="item-block"><a href="{% url "mypublisher.views.content_manager" %}">Content</a></li>
+			<li class="item-block"><a href="{% url "mypublisher.views.content_manager" %}">Preview Content</a></li>
 		</div>
-	</div>
-        </div>
-    </body>
-</html>
+</div>
 {% endblock %}

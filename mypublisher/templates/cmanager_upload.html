@@ -1,4 +1,12 @@
 {% extends "base.html" %}
+{% block breadcrumb %}
+<ol class="breadcrumb">
+<li><a href="/menu"><i class="icon-dashboard"></i> Menu</a></li>
+<li><a href="/menu"><i class="icon-dashboard"></i>Content Manager</a></li>
+<li class="active"><i class="icon-file-alt"></i> Upload Content</li>
+</ol>
+{% endblock %}
+
 {% block content %}
 <div class="inner-container">
 {% if message %}
