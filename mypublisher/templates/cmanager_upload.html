@@ -6,28 +6,41 @@
 <li class="active"><i class="icon-file-alt"></i> Upload Content</li>
 </ol>
 {% endblock %}
-
 {% block content %}
-<div class="inner-container">
-{% if message %}
-	<div class="message" >{{message}}</div>
-{% endif %}
-	<form name="uplad_content" id="uplad_content" action="{% url "mypublisher.views.save_content" %}" 
-	method="post" enctype="multipart/form-data">
-	{% csrf_token %}
-		<div class="upload-file-dialog">
-			<span class="label">Browse and select files to upload</span> 
-				<input type="file" size="40px" height="30px;" multiple="multiple" name="file_names"/>
+<form role="form" name="uplad_content" id="uplad_content" action="{% url "mypublisher.views.save_content" %}" method="post" enctype="multipart/form-data">
+{% csrf_token %} 
+  <div class="form-group">
+		<div class="jumbotron">
+			<h2>
+					<label for="exampleInputFile">BROWSE FILES HERE</label>
+			</h2>
+			<div class="fileContainer btn-primary">
+				<label for="exampleInputFile">Browse </label> <input
+					type="file" size="40px" height="30px;" multiple="multiple"
+					name="file_names" />
+			</div>
 		</div>
-		<div class="drop-file-dialog">
-			<span class="label"><h1>Drop Files Here</h1></span> 
+		<p style="text-align: center;">
+			<label for="exampleInputFile"> OR</label></h4>
+		<h4>
+		</p>
+		<div class="jumbotron">
+			<div class="container">
+				<h2>
+					<label for="exampleInputFile">DRAG AND DROP FILES HERE</label>
+				</h2>
+			</div>
 		</div>
-		<div class="drop-file-dialog">
-			<span class="label">Description</span>
-			<textarea rows="5" cols="50" name="description"></textarea> 
-		</div>
-		
-		<button type="submit"> Upload Files</button>
-	</form>
-</div>
+	</div>
+	<p class="help-block">
+		<ul class="list-group">
+			<li class="list-group-item">Free Domain Name Registration<span class="badge">X</span></li>
+			<li class="list-group-item">Number of Images <span class="badge">X</span></li>
+			<li class="list-group-item"> 24*7 support <span class="badge">X</span></li>
+			<li class="list-group-item">Disocunt Offer<span class="badge">X</span></li>
+		</ul>
+    </p>
+  
+  <button type="submit" class="btn btn-default">Upload</button>
+</form>
 {% endblock %}
