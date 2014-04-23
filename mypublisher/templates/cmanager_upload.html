@@ -7,6 +7,21 @@
 </ol>
 {% endblock %}
 {% block content %}
+<script type="text/javascript">
+var handleFiles = function(files){
+	var numFiles = files.length;
+	var text = numFiles.toString()+" file(s) selected.";
+	$(".browse_count").text(text);
+	var items ="";
+	for (var i = 0, numFiles = files.length; i < numFiles; i++) {
+		  var file = files[i];
+		  items += '<li class="list-group-item">'+file.name+' <span class="badge" title="delete">X</span>\
+		  <input type="hidden" name="deleted_'+i+'" value=""></li>'
+	}
+	
+	$("#list-files").html(items);
+}
+</script>
 <form role="form" name="uplad_content" id="uplad_content" action="{% url "mypublisher.views.save_content" %}" method="post" enctype="multipart/form-data">
 {% csrf_token %} 
   <div class="form-group">
@@ -17,8 +32,9 @@
 			<div class="fileContainer btn-primary">
 				<label for="exampleInputFile">Browse </label> <input
 					type="file" size="40px" height="30px;" multiple="multiple"
-					name="file_names" />
+					name="file_names"  onchange="handleFiles(this.files)"/>
 			</div>
+						<label for="exampleInputFile"><p class="browse_count"></p></label>
 		</div>
 		<p style="text-align: center;">
 			<label for="exampleInputFile"> OR</label></h4>
@@ -33,14 +49,9 @@
 		</div>
 	</div>
 	<p class="help-block">
-		<ul class="list-group">
-			<li class="list-group-item">Free Domain Name Registration<span class="badge">X</span></li>
-			<li class="list-group-item">Number of Images <span class="badge">X</span></li>
-			<li class="list-group-item"> 24*7 support <span class="badge">X</span></li>
-			<li class="list-group-item">Disocunt Offer<span class="badge">X</span></li>
+		<ul class="list-group" id="list-files">
 		</ul>
     </p>
-  
   <button type="submit" class="btn btn-default">Upload</button>
 </form>
 {% endblock %}

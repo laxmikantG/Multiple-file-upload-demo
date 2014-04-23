@@ -37,6 +37,9 @@ def mainmenu(request):
 def content_manager(request):
     return render_to_response('cmanager_menu.html',{})
 
+def render_content_list(request):
+    return render_to_response('content-list.html',{})
+
 
 def render_upload_content(request):
     return render_to_response('cmanager_upload.html',{}, context_instance=RequestContext(request))

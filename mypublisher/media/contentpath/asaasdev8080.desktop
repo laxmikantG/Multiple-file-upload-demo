@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=ASaaS-DEV8080
+Comment=会計事務所の視点に立って、会計事務所のベストなシステムを、会計事務所の皆さんと一緒に企画・開発するプロジェクトA-SaaS
+GenericName=ASaaS-DEV8080
+Exec='/opt'/'ASaaS-DEV8080'/bin/'ASaaS-DEV8080'
+Type=Application
+Terminal=false
+Icon=asaasdev8080
+StartupNotify=true
+X-KDE-StartupNotify=true
+Categories=Utility;
+X-AppInstall-Package=asaasdev8080
+X-AppInstall-Section=main
+
