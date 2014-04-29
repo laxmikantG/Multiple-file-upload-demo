@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block breadcrumb %}
 <ol class="breadcrumb">
 <li><a href="/menu"><i class="icon-dashboard"></i> Menu</a></li>
@@ -6,50 +7,44 @@
 <li class="active"><i class="icon-file-alt"></i> Upload Content</li>
 </ol>
 {% endblock %}
-{% block content %}
+{% block head %}
+<script type="text/javascript" src="{% static 'js/file-transfer.js' %}"></script>
 <script type="text/javascript">
-var handleFiles = function(files){
-	var numFiles = files.length;
-	var text = numFiles.toString()+" file(s) selected.";
-	$(".browse_count").text(text);
-	var items ="";
-	for (var i = 0, numFiles = files.length; i < numFiles; i++) {
-		  var file = files[i];
-		  items += '<li class="list-group-item">'+file.name+' <span class="badge" title="delete">X</span>\
-		  <input type="hidden" name="deleted_'+i+'" value=""></li>'
-	}
-	
-	$("#list-files").html(items);
-}
 </script>
+{% endblock %}
+{% block content %}
 <form role="form" name="uplad_content" id="uplad_content" action="{% url "mypublisher.views.save_content" %}" method="post" enctype="multipart/form-data">
-{% csrf_token %} 
-  <div class="form-group">
+{% csrf_token %}
+	<input type="radio" name="upload_method" value="1" checked> Browse and Upload
+	<input type="radio" name="upload_method" value="2"> Drag and Drop Upload 
+  <div class="form-group" id="browse_method">
 		<div class="jumbotron">
 			<h2>
-					<label for="exampleInputFile">BROWSE FILES HERE</label>
+					<label>BROWSE FILES HERE</label>
 			</h2>
 			<div class="fileContainer btn-primary">
-				<label for="exampleInputFile">Browse </label> <input
+				<label>Browse </label> <input
 					type="file" size="40px" height="30px;" multiple="multiple"
 					name="file_names"  onchange="handleFiles(this.files)"/>
 			</div>
-						<label for="exampleInputFile"><p class="browse_count"></p></label>
+						<label><p class="browse_count"></p></label>
 		</div>
-		<p style="text-align: center;">
-			<label for="exampleInputFile"> OR</label></h4>
-		<h4>
-		</p>
+		<p class="help-block">
+			<ul class="list-group" id="list-browse-files">
+			</ul>
+    	</p>
+	</div>
+	<div class="form-group" id="dnd_method" style="display:none;">
 		<div class="jumbotron">
-			<div class="container">
+			<div class="container" id="dropbox">
 				<h2>
-					<label for="exampleInputFile">DRAG AND DROP FILES HERE</label>
+					<label>DRAG AND DROP FILES HERE</label>
 				</h2>
 			</div>
 		</div>
 	</div>
 	<p class="help-block">
-		<ul class="list-group" id="list-files">
+		<ul class="list-group" id="list-dnd-files">
 		</ul>
     </p>
   <button type="submit" class="btn btn-default">Upload</button>

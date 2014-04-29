@@ -17,10 +17,19 @@ class ContentManager():
         '''
         Constructor
         '''
+    def get_deleted_files_list(self, reqdict):
+        """
+        """
+        filelist = [];
+        for key, value in reqdict.iteritems():
+            if  key and key.startswith("deleted_"):
+                filelist.append(value)
+        return filelist
         
     def handle_uploaded_file(self, files, req_dict):
         ''' 
         '''
+        deletedfiles = self.get_deleted_files_list(req_dict)        
         for f in files:
             if not os.path.exists(settings.CONTENT_STORAGE_PATH):
                 try:
@@ -29,17 +38,18 @@ class ContentManager():
                     writelog("Folder can not be created \n"+str(e))
             content_storage_path = os.path.join(settings.\
                                               CONTENT_STORAGE_PATH, f.name)
-            try:
-                with open(content_storage_path, 'wb+') as destination:
-                    os.chmod(content_storage_path, 0600)
-                    for chunk in f.chunks():
-                        destination.write(chunk)
-                file_meta = {"file_path":content_storage_path, "file_name"\
-                        :f.name, "description":req_dict.get("description")}
-                message = self.create_file_meta_dict(file_meta)
-            except OSError, e:
-                    writelog("File can not be created \n"+str(e))
-                    return False, 10004  
+            if f.name not in deletedfiles:
+                try:
+                    with open(content_storage_path, 'wb+') as destination:
+                        os.chmod(content_storage_path, 0600)
+                        for chunk in f.chunks():
+                            destination.write(chunk)
+                    file_meta = {"file_path":content_storage_path, "file_name"\
+                            :f.name, "description":req_dict.get("description")}
+                    message = self.create_file_meta_dict(file_meta)
+                except OSError, e:
+                        writelog("File can not be created \n"+str(e))
+                        return False, 10004  
         return True, 20001
             
     def create_file_meta_dict(self, file_meta):
