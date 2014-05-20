@@ -7,7 +7,8 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template import Context, loader, RequestContext
 from django.shortcuts import render_to_response
-
+from django.http import HttpResponse
+import json
 from mypublisher.core.utils import Utility as UTILITY
 # from mypublisher.app_logging import Logging as LogManager
 from mypublisher.content_manager import ContentManager 
@@ -49,13 +50,18 @@ def save_content(request):
     cmanager  = ContentManager() 
     files = request.FILES.getlist("file_names")
     utils = UTILITY()
-    req_dict = utils.get_request_dict(request, "POST") 
-    status, error_Code = cmanager.handle_uploaded_file(files, req_dict)
+    req_dict = utils.get_request_dict(request, "POST")
+    if files:
+        status, error_Code = cmanager.handle_uploaded_file(files, req_dict)
+    else:
+        files =  request.FILES.dict()
+        status, error_Code = cmanager.handle_drag_and_drop(files, req_dict)
     message = utils.get_err_msg(error_Code)
-    return render_to_response('cmanager_upload.html',{"message": message, "status":status}, context_instance=RequestContext(request))
+    response_data = {"message": message, "status":status}
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
 def writelog(data):
-    fp = open("/tmp/error_log.log", "w")
+    fp = open("/tmp/error_log.log", "a")
     fp.write(str(data))
     fp.close()

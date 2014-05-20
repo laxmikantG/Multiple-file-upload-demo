@@ -9,23 +9,30 @@
 {% endblock %}
 {% block head %}
 <script type="text/javascript" src="{% static 'js/file-transfer.js' %}"></script>
-<script type="text/javascript">
-</script>
+<style>
+#dropbox{
+	border:2px solid red;
+}
+</style>
 {% endblock %}
 {% block content %}
+
 <form role="form" name="uplad_content" id="uplad_content" action="{% url "mypublisher.views.save_content" %}" method="post" enctype="multipart/form-data">
 {% csrf_token %}
 	<input type="radio" name="upload_method" value="1" checked> Browse and Upload
-	<input type="radio" name="upload_method" value="2"> Drag and Drop Upload 
+	<input type="radio" name="upload_method" value="2"> Drag and Drop Upload
+<div class="alert alert-dismissable alert-success hide" id="uploadmsg">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <p id="message"></p>
+</div> 
   <div class="form-group" id="browse_method">
 		<div class="jumbotron">
 			<h2>
 					<label>BROWSE FILES HERE</label>
 			</h2>
 			<div class="fileContainer btn-primary">
-				<label>Browse </label> <input
-					type="file" size="40px" height="30px;" multiple="multiple"
-					name="file_names"  onchange="handleFiles(this.files)"/>
+				<label>Browse </label> 
+				<input type="file" size="40px" height="30px;" multiple="multiple" name="file_names" onchange="javascript:handleFiles(this.files, 'list-browse-files', 0);"/>
 			</div>
 						<label><p class="browse_count"></p></label>
 		</div>
@@ -39,6 +46,7 @@
 			<div class="container" id="dropbox">
 				<h2>
 					<label>DRAG AND DROP FILES HERE</label>
+					<label><p class="browse_count"></p></label>
 				</h2>
 			</div>
 		</div>
@@ -47,6 +55,6 @@
 		<ul class="list-group" id="list-dnd-files">
 		</ul>
     </p>
-  <button type="submit" class="btn btn-default">Upload</button>
+  <button type="button" id="upload-files" class="btn btn-default">Upload</button>
 </form>
 {% endblock %}

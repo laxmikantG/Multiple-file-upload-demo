@@ -51,7 +51,34 @@ class ContentManager():
                         writelog("File can not be created \n"+str(e))
                         return False, 10004  
         return True, 20001
-            
+    
+    def handle_drag_and_drop(self, files, req_dict):
+        """
+        """
+        deletedfiles = self.get_deleted_files_list(req_dict)
+        
+        for filename, filechunk in files.iteritems():
+            if not os.path.exists(settings.CONTENT_STORAGE_PATH):
+                try:
+                    os.makedirs(settings.CONTENT_STORAGE_PATH)
+                except OSError, e:
+                    writelog("Folder can not be created \n"+str(e))
+            content_storage_path = os.path.join(settings.\
+                                              CONTENT_STORAGE_PATH, filename)
+            if  filename not in deletedfiles:
+                try:
+                    with open(content_storage_path, 'wb+') as destination:
+                        os.chmod(content_storage_path, 0600)
+                        for chunk in filechunk.chunks():
+                            destination.write(chunk)
+                    file_meta = {"file_path":content_storage_path, "file_name"\
+                            :filename, "description":req_dict.get("description")}
+                    self.create_file_meta_dict(file_meta)
+                except OSError, e:
+                        writelog("File can not be created \n"+str(e))
+                        return False, 10004
+        return True, 20001
+    
     def create_file_meta_dict(self, file_meta):
         utils = UTILITY()
         data_dict = {}
@@ -177,6 +204,11 @@ class ContentManager():
             if val.has_key(extension):
                 return key 
         return None
+    
+    def geterr(self, code):
+        EHobj = ERROR_HANDLER()
+        return EHobj.get_error_from_config(code)
+
 #         config_data = utils.load_config(settings.MIME_TYPES_INI)
     
 def writelog(data):

@@ -105,7 +105,6 @@ class Utility:
         f.read(filepath)
         return f.as_dict()
     
-
     def get_err_msg(self, error_code):
         """
         """

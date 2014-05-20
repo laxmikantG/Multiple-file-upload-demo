@@ -5,11 +5,11 @@ Created on 13-Feb-2014
 '''
 from mypublisher.core.utils import Utility as UTILITY
 from django.conf import settings
+
 class ErrorHandler:
     '''
     classdocs
     '''
-
     def __init__(self):
         '''
         Constructor
@@ -22,14 +22,9 @@ class ErrorHandler:
         '''
         message = None
         for section in self.config.sections():
-            errormsg = self.get_error_code(section, error_code)
-            writelog((errormsg, "errormsg"))
-#             if errormsg:
-#                 message = errormsg
-#                 break;
-#             else:
-#                 continue
-#         return  message if message else "Internal Server Error"  
+            message = self.get_error_code(section, error_code)
+            return message
+        return "Internal server error" 
             
         
     def get_error_code(self, section, error_code):

@@ -10,7 +10,6 @@
 10004 = File can not be created
 
 [messages]
-20001 = File(s) uploaded.
-
+20001 = File(s) updated.
 [Syntax]
 500 = Internal server error
