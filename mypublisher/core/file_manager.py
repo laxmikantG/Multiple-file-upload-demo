@@ -28,3 +28,12 @@ class FileManager:
     def updateFilePermissions(self, file_meta):
         m = models.FilePermissions(**file_meta)
         m.save()
+
+
+
+
+def writelog(data):
+    ''' Write log file'''
+    fp = open("/tmp/error_log.log", "a")
+    fp.write(str(data))
+    fp.close()

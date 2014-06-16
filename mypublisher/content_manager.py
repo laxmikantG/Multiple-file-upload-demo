@@ -107,7 +107,14 @@ class ContentManager():
             "is_video": rets[7],
             "is_unrecognised": rets[8]
         }
+        file_permissions = {
+            "read":True,
+            "edit": True,
+            "full":True,
+            "none":False
+        }
         files_manager.updateFileAttributes(file_meta)
+        files_manager.updateFilePermissions(file_permissions)
         
         return True
 
@@ -197,6 +204,8 @@ class ContentManager():
         return section
     
     def check_by_extension(self, extension):
+        if not extension:
+            return None
         filepath = settings.MIME_TYPES_INI
         utils = UTILITY()
         config_dict = utils.load_config_as_dict(filepath)
