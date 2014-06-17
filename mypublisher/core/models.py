@@ -2,7 +2,6 @@ from django.db import models
 import datetime
 from django.contrib.auth.admin import User
 from mypublisher.core.utils import Utility as UTILITY
-# Create your models here.
 
 def content_file_name(username, filename):
     return '/'.join(['content', username, filename])
@@ -30,7 +29,16 @@ class Files(models.Model):
         self.modified = datetime.datetime.today()
         super(Files, self).save()
 
-        
+class UserFiles(models.Model):
+    file = models.ForeignKey(Files, blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
+    
+    def __unicode__(self):
+        return u'%s ' % (self.file)
+
+    def save(self):
+        super(UserFiles, self).save()
+            
 class FileAttributes(models.Model):
     uid = models.TextField()
     is_text = models.SmallIntegerField(blank=True, null=True, help_text=
@@ -90,6 +98,7 @@ class FilePermissions(models.Model):
     
 class FileData(models.Model):
     uid = models.TextField()
+    file = models.ForeignKey(Files, blank=True, null=True)
     blob = models.FileField(upload_to=content_file_name, blank=True, 
                                                                  null=True)
     text = models.TextField(blank=True, null=True)

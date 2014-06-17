@@ -10,8 +10,6 @@ class FileManager:
     '''
     classdocs
     '''
-
-
     def __init__(self):
         '''
         Constructor
@@ -29,7 +27,10 @@ class FileManager:
         m = models.FilePermissions(**file_meta)
         m.save()
 
-
+    def getfilesbyuser(self, user):
+        return models.UserFiles.objects.filter(user__username = user)
+    
+        
 
 
 def writelog(data):

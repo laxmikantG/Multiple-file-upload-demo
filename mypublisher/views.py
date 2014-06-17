@@ -39,7 +39,10 @@ def content_manager(request):
     return render_to_response('cmanager_menu.html',{})
 
 def render_content_list(request):
-    return render_to_response('content-list.html',{})
+    user = "laxmikant"
+    cmanager  = ContentManager()
+    flist = cmanager.get_content_list(user)
+    return render_to_response('content-list.html',{"filelist": flist})
 
 
 def render_upload_content(request):

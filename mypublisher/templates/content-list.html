@@ -6,142 +6,33 @@
 </ol>
 {% endblock %}
 {% block content %}
-
-<div class="list-group"> 
-  <a href="#" class="list-group-item">
-  	<li href="#" class="button-css">
-  		Image name
-  	</li>
-    	<div class="list-group-item-text block-cust">
-			 <div class="btn-toolbar">
-  				<ul class="btn-group">
-    				<li class="libtn">Created Date:25th Mar 2012 </li>
-  				</ul>
-  				<ul class="btn-group">
-    				<li class="libtn">Modified Date: 25th Mar 2012 </li>
-  				</ul>
-  				<ul class="btn-group">
-    				<li class="libtn">Format:JPEG </li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">Size:2000Kb</li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">User name:Laxmikant </li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">Delete</li>
-  				</ul>
-  			</div>
-	    </div>
-  </a>
-  <a href="#" class="list-group-item">
-  	<li href="#" class="button-css">
-  		Image name
-  	</li>
-    	<div class="list-group-item-text block-cust">
-			 <div class="btn-toolbar">
-  				<ul class="btn-group">
-    				<li class="libtn">Created Date:25th Mar 2012 </li>
-  				</ul>
-  				<ul class="btn-group">
-    				<li class="libtn">Modified Date: 25th Mar 2012 </li>
-  				</ul>
-  				<ul class="btn-group">
-    				<li class="libtn">Format:JPEG </li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">Size:2000Kb</li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">User name:Laxmikant </li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">Delete</li>
-  				</ul>
-  			</div>
-	    </div>
-  </a>
-  <a href="#" class="list-group-item">
-  	<li href="#" class="button-css">
-  		Image name
-  	</li>
-    	<div class="list-group-item-text block-cust">
-			 <div class="btn-toolbar">
-  				<ul class="btn-group">
-    				<li class="libtn">Created Date:25th Mar 2012 </li>
-  				</ul>
-  				<ul class="btn-group">
-    				<li class="libtn">Modified Date: 25th Mar 2012 </li>
-  				</ul>
-  				<ul class="btn-group">
-    				<li class="libtn">Format:JPEG </li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">Size:2000Kb</li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">User name:Laxmikant </li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">Delete</li>
-  				</ul>
-  			</div>
-	    </div>
-  </a>
-  <a href="#" class="list-group-item">
-  	<li href="#" class="button-css">
-  		Image name
-  	</li>
-    	<div class="list-group-item-text block-cust">
-			 <div class="btn-toolbar">
-  				<ul class="btn-group">
-    				<li class="libtn">Created Date:25th Mar 2012 </li>
-  				</ul>
-  				<ul class="btn-group">
-    				<li class="libtn">Modified Date: 25th Mar 2012 </li>
-  				</ul>
-  				<ul class="btn-group">
-    				<li class="libtn">Format:JPEG </li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">Size:2000Kb</li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">User name:Laxmikant </li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">Delete</li>
-  				</ul>
-  			</div>
-	    </div>
-  </a>
-  <a href="#" class="list-group-item">
-  	<li href="#" class="button-css">
-  		Image name
-  	</li>
-    	<div class="list-group-item-text block-cust">
-			 <div class="btn-toolbar">
-  				<ul class="btn-group">
-    				<li class="libtn">Created Date:25th Mar 2012 </li>
-  				</ul>
-  				<ul class="btn-group">
-    				<li class="libtn">Modified Date: 25th Mar 2012 </li>
-  				</ul>
-  				<ul class="btn-group">
-    				<li class="libtn">Format:JPEG </li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">Size:2000Kb</li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">User name:Laxmikant </li>
-  				</ul>
-  				<ul class="btn-group">
-  					<li class="libtn">Delete</li>
-  				</ul>
-  			</div>
-	    </div>
-  </a>
-</div>
+<style>
+.glyphicon {
+  font-size: 11px;
+}
+</style>
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th colspan="2">Title</th>
+          <th colspan="2">Owner</th>
+          <th>Tools</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for  f in filelist %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td colspan="2">{{f.file.name}}</td>
+          <td colspan="2">{{f.user.username}} - {{f.file.modified}}</td>
+          <td>
+          	<span class="badge" title="ReUpload">R</span>
+          	<span class="badge" title="ReUpload"><span class="glyphicon glyphicon-info-sign"></span></span>
+          	<span class="badge" title="Delete">X</span>
+          </td>
+        </tr>
+	{% endfor %}
+      </tbody>
+    </table>
 {% endblock %}

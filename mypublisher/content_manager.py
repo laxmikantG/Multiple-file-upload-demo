@@ -217,6 +217,11 @@ class ContentManager():
     def geterr(self, code):
         EHobj = ERROR_HANDLER()
         return EHobj.get_error_from_config(code)
+    
+    def get_content_list(self, user):
+        files_manager = FILES_MANAGER()
+        return files_manager.getfilesbyuser(user)
+        
 
 #         config_data = utils.load_config(settings.MIME_TYPES_INI)
     
